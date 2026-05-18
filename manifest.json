@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Returnly",
+  "version": "1.0.0",
+  "description": "Track your Amazon return windows and get alerted before they close.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.amazon.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_badge_text": ""
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.com/gp/css/order-history*", "https://www.amazon.com/your-orders/orders*", "https://www.amazon.com/gp/your-account/order-history*"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

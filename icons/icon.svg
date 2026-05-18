@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="26" fill="url(#bg)"/>
+
+  <!-- Box body -->
+  <rect x="20" y="60" width="88" height="48" rx="5" fill="white"/>
+
+  <!-- Box top flaps -->
+  <polygon points="20,60 64,48 108,60" fill="rgba(255,255,255,0.55)"/>
+  <line x1="64" y1="48" x2="64" y2="60" stroke="rgba(220,38,38,0.25)" stroke-width="2"/>
+
+  <!-- Tape strip -->
+  <rect x="53" y="60" width="22" height="48" fill="rgba(249,115,22,0.12)"/>
+
+  <!-- Dividing line on box -->
+  <line x1="20" y1="78" x2="108" y2="78" stroke="rgba(249,115,22,0.2)" stroke-width="2"/>
+
+  <!-- Clock badge -->
+  <circle cx="91" cy="37" r="24" fill="#dc2626"/>
+  <circle cx="91" cy="37" r="20" fill="white"/>
+  <!-- Clock tick marks -->
+  <line x1="91" y1="20" x2="91" y2="24" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  <line x1="91" y1="50" x2="91" y2="54" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  <line x1="74" y1="37" x2="78" y2="37" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  <line x1="104" y1="37" x2="108" y2="37" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  <!-- Hour hand (11 o'clock — urgency) -->
+  <line x1="91" y1="37" x2="84" y2="26" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+  <!-- Minute hand -->
+  <line x1="91" y1="37" x2="99" y2="37" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Center dot -->
+  <circle cx="91" cy="37" r="2.5" fill="#dc2626"/>
+</svg>

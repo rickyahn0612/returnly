@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Returnly</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <span class="logo-icon">📦</span>
+      <span class="logo-text">Returnly</span>
+    </div>
+    <a href="https://www.amazon.com/your-orders/orders" target="_blank" class="scan-link">Scan orders →</a>
+  </div>
+
+  <div id="content">
+    <div id="loading" class="empty-state">Loading...</div>
+    <div id="empty" class="empty-state" style="display:none;">
+      <p>No active return windows found.</p>
+      <p class="hint">Visit your <a href="https://www.amazon.com/your-orders/orders" target="_blank">Amazon Orders</a> page to scan.</p>
+    </div>
+    <div id="order-list" style="display:none;"></div>
+  </div>
+
+  <div class="footer">
+    <button id="clear-btn">Clear expired</button>
+    <button id="reset-btn">Reset all</button>
+    <span id="total-count"></span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

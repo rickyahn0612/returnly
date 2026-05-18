@@ -1,0 +1,240 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  width: 360px;
+  background: #fff;
+  color: #111;
+}
+
+.header {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.logo-icon { font-size: 18px; }
+
+.logo-text {
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.3px;
+}
+
+.scan-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.scan-link:hover { background: rgba(255,255,255,0.3); }
+
+#content {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #999;
+  padding: 10px 16px 4px;
+}
+
+.empty-state {
+  padding: 28px 16px;
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.hint { font-size: 12px; color: #aaa; margin-top: 4px; }
+.hint a { color: #f97316; text-decoration: none; }
+
+.order-item {
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.order-item:hover { background: #fafafa; }
+.order-item:last-child { border-bottom: none; }
+
+.order-item-link {
+  flex: 1;
+  padding: 11px 8px 11px 16px;
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.dismiss-btn {
+  opacity: 0;
+  border: none;
+  background: none;
+  color: #ccc;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 12px;
+  line-height: 1;
+  transition: opacity 0.15s, color 0.15s;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.order-item:hover .dismiss-btn { opacity: 1; }
+.dismiss-btn:hover { color: #ef4444; }
+
+.urgency-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.urgency-critical { background: #ef4444; }
+.urgency-warning  { background: #f97316; }
+.urgency-ok       { background: #22c55e; }
+.urgency-none     { background: transparent; }
+
+.order-item-continuation {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: none;
+}
+
+.order-item-continuation + .order-item:not(.order-item-continuation) {
+  border-top: 1px solid #f3f4f6;
+}
+
+.order-info { flex: 1; min-width: 0; }
+
+.order-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.order-sub {
+  font-size: 11px;
+  color: #888;
+  margin-top: 3px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.order-id {
+  font-family: monospace;
+  font-size: 10px;
+  color: #bbb;
+}
+
+.days-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  white-space: nowrap;
+}
+
+.badge-critical { background: #fee2e2; color: #dc2626; }
+.badge-warning  { background: #ffedd5; color: #ea580c; }
+.badge-ok       { background: #dcfce7; color: #16a34a; }
+
+.footer {
+  padding: 9px 16px;
+  border-top: 1px solid #f3f4f6;
+  background: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#clear-btn, #reset-btn {
+  font-size: 11px;
+  color: #aaa;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#clear-btn:hover { color: #f97316; }
+#reset-btn:hover { color: #ef4444; }
+
+#undo-toast {
+  position: fixed;
+  bottom: 52px;
+  left: 12px;
+  right: 12px;
+  background: #1f2937;
+  color: white;
+  font-size: 12px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  z-index: 100;
+  transition: opacity 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#undo-toast span {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.85;
+}
+
+#undo-btn {
+  background: none;
+  border: none;
+  color: #f97316;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+#total-count {
+  font-size: 11px;
+  color: #bbb;
+}
