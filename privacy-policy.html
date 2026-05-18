@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Returnly – Privacy Policy</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 680px; margin: 60px auto; padding: 0 24px; color: #111; line-height: 1.7; }
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+    .subtitle { color: #888; font-size: 14px; margin-bottom: 40px; }
+    h2 { font-size: 17px; font-weight: 600; margin-top: 36px; }
+    p, li { font-size: 15px; color: #333; }
+    ul { padding-left: 20px; }
+    a { color: #f97316; }
+  </style>
+</head>
+<body>
+  <h1>Returnly Privacy Policy</h1>
+  <p class="subtitle">Last updated: May 17, 2026</p>
+
+  <p>Returnly is a Chrome extension that tracks Amazon return windows so you never miss a deadline. This policy explains what data the extension accesses, how it is used, and how it is stored.</p>
+
+  <h2>What data we access</h2>
+  <p>When you visit your Amazon Orders page (<code>amazon.com/your-orders/orders</code>), Returnly reads the page content to extract:</p>
+  <ul>
+    <li>Product names from your orders</li>
+    <li>Return eligibility dates ("Eligible through…")</li>
+    <li>Amazon order IDs and product ASINs</li>
+  </ul>
+
+  <h2>How data is stored</h2>
+  <p>All data is stored <strong>locally on your device</strong> using Chrome's built-in <code>chrome.storage.local</code> API. Your order information never leaves your browser and is never transmitted to any server, third party, or external service.</p>
+
+  <h2>What we do not do</h2>
+  <ul>
+    <li>We do not collect, transmit, or sell any personal data</li>
+    <li>We do not use analytics or tracking of any kind</li>
+    <li>We do not communicate with any external servers</li>
+    <li>We do not access any Amazon account credentials or payment information</li>
+  </ul>
+
+  <h2>Permissions used</h2>
+  <ul>
+    <li><strong>storage</strong> — to save your return window data locally</li>
+    <li><strong>alarms</strong> — to check deadlines daily and update the badge count</li>
+    <li><strong>notifications</strong> — to alert you when a return window is closing soon</li>
+    <li><strong>host_permissions (amazon.com)</strong> — to read your orders page content</li>
+  </ul>
+
+  <h2>Deleting your data</h2>
+  <p>You can delete all locally stored data at any time by clicking <strong>"Reset all"</strong> in the extension popup, or by uninstalling the extension from Chrome.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If this policy is updated, the "Last updated" date above will change. Continued use of the extension constitutes acceptance of the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>Questions? Email <a href="mailto:hello@returnly.app">hello@returnly.app</a></p>
+</body>
+</html>
