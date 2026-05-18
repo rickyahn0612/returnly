@@ -99,14 +99,33 @@ function renderOrders(orders, dismissed = new Set()) {
         a.className = 'order-item-link';
         a.href = itemHref;
         a.target = '_blank';
-        a.innerHTML = `
-          <div class="urgency-dot urgency-${level}"></div>
-          <div class="order-info">
-            <div class="order-title">${item.title}</div>
-            <div class="order-sub">Return by <strong>${formatDate(order.returnDeadline)}</strong>${idx === 0 && isRealOrderId ? ` &nbsp;<span class="order-id">${order.orderId}</span>` : ''}</div>
-          </div>
-          <span class="days-badge badge-${level}">${daysLabel(days)}</span>
-        `;
+
+        const dot = document.createElement('div');
+        dot.className = `urgency-dot urgency-${level}`;
+
+        const info = document.createElement('div');
+        info.className = 'order-info';
+
+        const titleEl = document.createElement('div');
+        titleEl.className = 'order-title';
+        titleEl.textContent = item.title;
+
+        const sub = document.createElement('div');
+        sub.className = 'order-sub';
+        sub.innerHTML = `Return by <strong>${formatDate(order.returnDeadline)}</strong>`;
+        if (idx === 0 && isRealOrderId) {
+          const idSpan = document.createElement('span');
+          idSpan.className = 'order-id';
+          idSpan.textContent = order.orderId;
+          sub.append('  ', idSpan);
+        }
+
+        const badge = document.createElement('span');
+        badge.className = `days-badge badge-${level}`;
+        badge.textContent = daysLabel(days);
+
+        info.append(titleEl, sub);
+        a.append(dot, info, badge);
 
         const dismissBtn = document.createElement('button');
         dismissBtn.className = 'dismiss-btn';
@@ -125,18 +144,18 @@ function renderOrders(orders, dismissed = new Set()) {
           // Show undo toast
           showUndoToast(item.title, () => {
             // Undo: remove key from dismissed list and re-render
-            chrome.storage.local.get(['returnlyOrders', 'returnlyDismissed'], (r) => {
-              const keys = (r.returnlyDismissed || []).filter((k) => k !== key);
-              chrome.storage.local.set({ returnlyDismissed: keys }, () => {
-                renderOrders(r.returnlyOrders || [], new Set(keys));
+            chrome.storage.local.get(['returnAlertOrders', 'returnAlertDismissed'], (r) => {
+              const keys = (r.returnAlertDismissed || []).filter((k) => k !== key);
+              chrome.storage.local.set({ returnAlertDismissed: keys }, () => {
+                renderOrders(r.returnAlertOrders || [], new Set(keys));
               });
             });
           }, () => {
             // Confirmed: save to dismissed
-            chrome.storage.local.get(['returnlyDismissed'], (r) => {
-              const keys = r.returnlyDismissed || [];
+            chrome.storage.local.get(['returnAlertDismissed'], (r) => {
+              const keys = r.returnAlertDismissed || [];
               if (!keys.includes(key)) keys.push(key);
-              chrome.storage.local.set({ returnlyDismissed: keys });
+              chrome.storage.local.set({ returnAlertDismissed: keys });
             });
           });
         });
@@ -175,18 +194,18 @@ function showUndoToast(title, onUndo, onConfirm) {
   }, 4000);
 }
 
-chrome.storage.local.get(['returnlyOrders', 'returnlyDismissed'], (result) => {
-  renderOrders(result.returnlyOrders || [], new Set(result.returnlyDismissed || []));
+chrome.storage.local.get(['returnAlertOrders', 'returnAlertDismissed'], (result) => {
+  renderOrders(result.returnAlertOrders || [], new Set(result.returnAlertDismissed || []));
 });
 
 clearBtn.addEventListener('click', () => {
-  chrome.storage.local.get(['returnlyOrders'], (result) => {
-    const orders = result.returnlyOrders || [];
+  chrome.storage.local.get(['returnAlertOrders'], (result) => {
+    const orders = result.returnAlertOrders || [];
     const active = orders.filter((o) => daysUntil(o.returnDeadline) > 0);
-    chrome.storage.local.set({ returnlyOrders: active }, () => renderOrders(active));
+    chrome.storage.local.set({ returnAlertOrders: active }, () => renderOrders(active));
   });
 });
 
 resetBtn.addEventListener('click', () => {
-  chrome.storage.local.set({ returnlyOrders: [], returnlyDismissed: [] }, () => renderOrders([]));
+  chrome.storage.local.set({ returnAlertOrders: [], returnAlertDismissed: [] }, () => renderOrders([]));
 });
